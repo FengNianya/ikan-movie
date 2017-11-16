@@ -1,0 +1,19 @@
+{
+  "name": "ikan-movie",
+  "version": "1.0.0",
+  "description": "movie",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "keywords": [
+    "express",
+    "mongoose"
+  ],
+  "author": "kang",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "pug": "^2.0.0-rc.4"
+  }
+}
