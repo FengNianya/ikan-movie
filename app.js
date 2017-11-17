@@ -2,6 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var app = express()  
 var path = require('path')
+app.locals.moment = require('moment');
 
 //引入mongoose模块，来连接数据库
 var mongoose = require('mongoose')
@@ -82,10 +83,10 @@ app.get("/admin/movie", function (req, res) {
     )
 })
 //详情页面点击修改按钮
-app.get('admin/update/:id',function(req,res){
+app.get('/admin/update/:id',function(req,res){
     var id = req.params.id
     if(id){
-        Movie.findById(id,function(err,movie){
+        movie.findById(id,function(err,movie){
             res.render('admin',{
                 title: 'ikan-movie',
                 message: 'ikan movie 后台更新页',
