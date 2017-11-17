@@ -10,7 +10,7 @@ var mongoose = require('mongoose')
 var _ = require('underscore')
 
 //加载movie模型
-var movie = require('./models/movie')
+var Movie = require('./models/movie')
 var port = process.env.PORT||3000  
 
 //连接本地的数据库，数据库名：ikan-movie
@@ -26,7 +26,7 @@ app.set('views','./views/pages')
 app.set('view engine','jade')
 
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname + '/bower_components')))
+app.use(express.static(path.join(__dirname + '/public')))
 
 app.listen(port, () => {
     console.log('ikan-movie start on port:' + port)
@@ -34,7 +34,7 @@ app.listen(port, () => {
 
 //请求首页
 app.get("/",function(req,res){
-    movie.fetch(function(err,movies){
+    Movie.fetch(function(err,movies){
         if(err){
             console.log(err)
         }
@@ -53,7 +53,7 @@ app.get("/",function(req,res){
 // 斜杠+id,这样可以通过 req.params.id 拿到id的值
 app.get("/movie/:id", function (req, res) {
     var id = req.params.id
-    movie.findById(id,function(err,movie){
+    Movie.findById(id,function(err,movie){
         res.render("detail",
             {
                 title: 'ikan-movie',
@@ -86,7 +86,7 @@ app.get("/admin/movie", function (req, res) {
 app.get('/admin/update/:id',function(req,res){
     var id = req.params.id
     if(id){
-        movie.findById(id,function(err,movie){
+        Movie.findById(id,function(err,movie){
             res.render('admin',{
                 title: 'ikan-movie',
                 message: 'ikan movie 后台更新页',
@@ -96,14 +96,31 @@ app.get('/admin/update/:id',function(req,res){
     }
 })
 
+//详情页删除按钮
+app.delete('/admin/list',function(req,res){
+    var id = req.query.id
+    if(id){
+        Movie.remove({_id:id},function(err,movie){
+            if(err){
+                console.log(err)
+            }
+            else{
+                res.json({success:1})
+            }
+        })
+    }
+})
+
 //后台页面点击录入按钮提交数据到数据库
 app.post('/admin/movie/new',function(req,res){
     var id = req.body.movie.id
     var movieObj = req.body.movie
     var _movie = null
-    
-    if (typeof(id) !== 'undefined'){
-        movie.findById(id,function(err,movie){
+
+//这里有bug，不能修改已经存在的数据。
+//未解决bug
+    if (id !== 'undefined'){
+        Movie.findById(id,function(err,movie){
             if(err){
                 console.log(err)
             }
@@ -117,7 +134,7 @@ app.post('/admin/movie/new',function(req,res){
                 if(err){
                     console.log(err)
                 }
-                res.redirect('/movie/'+movie._id)
+                res.redirect('/movie/'+movie._id)  //edited
             })
         })
     }
@@ -141,9 +158,11 @@ app.post('/admin/movie/new',function(req,res){
     }
 })
 
+
+
 //列表页
 app.get("/admin/list", function (req, res) {
-    movie.fetch(function (err, movies) {
+    Movie.fetch(function (err, movies) {
         if (err) {
             console.log(err)
         }
