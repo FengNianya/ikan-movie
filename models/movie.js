@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var MovieSchema = require('../schemas/movie')
+var movieSchema = require('../schemas/movie')
 //编译生成Movie模型
-var Movie = mongoose.model('Movie',MovieSchema)
-module.exports = Movie
+var movie = mongoose.model('Movie',movieSchema)
+module.exports = movie
