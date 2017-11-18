@@ -1,0 +1,16 @@
+{
+    "_id" : ObjectId("5a0eeb4912aa4b31107aa192"),
+    "doctor" : "舒里·勒·莫",
+    "title" : "旺旺心语",
+    "country" : "美国",
+    "language" : "英语",
+    "year" : 2016,
+    "poster" : "https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268/sign=857d6111b0de9c82a665fe89548180d2/4610b912c8fcc3ced4d84c1b9145d688d43f20f9.jpg",
+    "summary" : "舒里·勒·莫执导的《旺旺心语》讲述了一个家庭和当地居民努力挽救一只英雄狗Semper的真实故事。在这个家庭中，父亲是陆战队上尉，母亲是全职主妇，还有他们15岁的女儿和儿子以及一个早熟的6岁女儿。这个家庭难以承担Semper的手术费用。大女儿想出了一个主意，举行社区义卖活动。在基金募集过程中，一些暴躁的邻居还闹出了一点不愉快和意外。最后终于凑足了手术费，在进行手术前，Semper表现出它一贯的英雄气概。",
+    "flash" : "http://player.youku.com/embed/XMTU3MzE0MDY4",
+    "meta" : {
+        "updateAt" : ISODate("2017-11-17T13:59:37.168Z"),
+        "createAt" : ISODate("2017-11-17T13:59:37.168Z")
+    },
+    "__v" : 0
+}
