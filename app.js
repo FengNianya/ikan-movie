@@ -131,13 +131,13 @@ app.delete('/admin/list',function(req,res){
 
 //后台页面点击录入按钮提交数据到数据库
 app.post('/admin/movie/new',function(req,res){
-    var id = req.body.movie.id
+    var id = req.body.movie._id
     var movieObj = req.body.movie
     var _movie = null
 
 //这里有bug，不能修改已经存在的数据。
 //未解决bug
-    if (id !== undefined){
+    if (id !== 'undefined'){
         Movie.findById(id,function(err,movie){
             if(err){
                 console.log(err)
